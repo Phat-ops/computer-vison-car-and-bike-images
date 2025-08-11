@@ -4,7 +4,7 @@ LABEL tac_gia="phat06"
 WORKDIR /phat06
 
 COPY model.py /phat06/model.py
-COPY model.pkl /phat06/model.pkl
+COPY model.pth /phat06/model.pth
 COPY API.py /phat06/API.py
 COPY requirements.txt /phat06/requirements.txt
 
