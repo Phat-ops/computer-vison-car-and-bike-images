@@ -17,9 +17,12 @@ def root():
 
 @app.post("/predict_model")
 async def predict(file: UploadFile = File(...)):
+    #accept image form user
     image_bytes = await file.read()
+    #read and conver the same size with train
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB").resize((224,224))
     class_name = ["Car","Bike"]
+    #covert to tensor
     tensor = ToTensor()
     image = tensor(image)
     image = image.unsqueeze(0)
