@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch
 from tqdm import tqdm
 from torch.utils.tensorboard import SummaryWriter
+import pickle
 
 if __name__ == '__main__':
 
@@ -98,3 +99,7 @@ if __name__ == '__main__':
         accuracy = accuracy_score(all_label,all_predict)
         #record accuracy after test on sumary
         writer.add_scalar("test/accuracy", accuracy,epoch)
+    
+    #save model
+    torch.save(model.state_dict(), "model.pth")
+    
