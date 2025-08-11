@@ -1,7 +1,6 @@
-scikit-learn
 fastapi
 uvicorn
 torch
 Pillow
 torchvision
-tqdm
+io
