@@ -3,7 +3,8 @@
 ---
 
 ## 🎥 Demo Video
-[![Demo Video](https://github.com/user-attachments/assets/21f2de11-0871-4db2-993e-9b4625f72555)]([https://link-to-your-demo-video.com](https://github.com/user-attachments/assets/4ca265dc-7ef6-4d9a-8575-4e0565f0d743))
+
+[![demo video](https://github.com/user-attachments/assets/21f2de11-0871-4db2-993e-9b4625f72555)]([https://link-to-your-demo-video.com](https://github.com/user-attachments/assets/4ca265dc-7ef6-4d9a-8575-4e0565f0d743))
 
 ---
 
