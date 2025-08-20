@@ -1,6 +1,6 @@
 from torch.utils.data import Dataset
 from PIL import Image
-from torchvision.transforms import ToTensor,PILToTensor, Compose,Resize
+from torchvision.transforms import ToTensor,PILToTensor, Compose,Resize, RandomAffine,ColorJitter
 from torch.utils.data import DataLoader
 import os
 
@@ -52,5 +52,23 @@ class MyDataset(Dataset):
         return self.images[index], self.labels[index]
 
 if __name__ == '__main__':
-    pass
+    transform_train = Compose([
+                        RandomAffine(
+                        degrees= (-5,5),
+                        translate= (0.15,0.15),
+                        scale= (0.85,1.15),
+                        shear= 10
+                        )
+                        ,
+                        ColorJitter(
+                            brightness=0.125,
+                            contrast= 0.5,
+                            saturation= 0.25,
+                            hue=0.05
+                        )
+                ])
+    Dataset = MyDataset(root='Car-Bike-Dataset',train= False, transform= transform_train)
+    i,l = Dataset.__getitem__(100)
+    i.show()
+    
 

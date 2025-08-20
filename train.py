@@ -2,7 +2,7 @@ from dataset import MyDataset
 from model import MyModel 
 from sklearn.metrics import classification_report, accuracy_score
 from torch.utils.data import DataLoader
-from torchvision.transforms import Compose,Resize, ToTensor
+from torchvision.transforms import Compose,Resize, ToTensor,RandomAffine,ColorJitter
 import torch.nn as nn
 import torch
 from tqdm import tqdm
@@ -12,15 +12,31 @@ import pickle
 if __name__ == '__main__':
 
     #creat transform
-    transform = Compose([
+    transform_train = Compose([
+                        RandomAffine(
+                        degrees= (-5,5),
+                        translate= (0.15,0.15),
+                        scale= (0.85,1.15),
+                        shear= 10
+                        ),
+                        Resize((224,224)),
+                        ColorJitter(
+                            brightness=0.125,
+                            contrast= 0.5,
+                            saturation= 0.25,
+                            hue=0.05
+                        ),
+                        ToTensor()
+                ])
+    transform_test = Compose([
                         Resize((224,224)),
                         ToTensor()
                 ])
     num_epochs= 10
     
     #creat train, test data
-    train_data = MyDataset(root="/kaggle/input/car-vs-bike-classification-dataset/Car-Bike-Dataset", train=True,transform=transform)
-    test_data = MyDataset(root="/kaggle/input/car-vs-bike-classification-dataset/Car-Bike-Dataset", train=False,transform=transform)
+    train_data = MyDataset(root="/kaggle/input/car-vs-bike-classification-dataset/Car-Bike-Dataset", train=True,transform=transform_train)
+    test_data = MyDataset(root="/kaggle/input/car-vs-bike-classification-dataset/Car-Bike-Dataset", train=False,transform=transform_test)
     
     #train data loader to fix model
     train_data = DataLoader(

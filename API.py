@@ -4,6 +4,7 @@ import io
 import torch
 from torchvision.transforms import ToTensor,Resize
 from model import MyModel
+from torchsummary import summary
 
 app = FastAPI()
 
@@ -32,4 +33,6 @@ async def predict(file: UploadFile = File(...)):
     return {"predict": prediction}
 #python -m uvicorn API:app --reload to run
 
-
+#xem kien truc model
+# model = MyModel()
+# summary(model, (3, 224, 224))
